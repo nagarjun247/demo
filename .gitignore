@@ -1,0 +1,11 @@
+### macOS ###
+*.DS_Store
+
+### Linux ###
+*~
+.Trash-*
+
+### Windows ###
+Thumbs.db
+*.lnk
+
