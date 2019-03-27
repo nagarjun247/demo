@@ -4,7 +4,7 @@
   "description": "Make editable educational videos",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/abraj/chanakya/issues"
   },
-  "homepage": "https://github.com/abraj/chanakya#readme"
+  "homepage": "https://github.com/abraj/chanakya#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
 }
