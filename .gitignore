@@ -9,3 +9,6 @@
 Thumbs.db
 *.lnk
 
+### Dev ###
+node_modules/
+build/
