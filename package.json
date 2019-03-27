@@ -4,7 +4,7 @@
   "description": "Make editable educational videos",
   "main": "index.js",
   "scripts": {
-    "babel": "mkdir build && babel src/index.js -o build/bundle.js",
+    "babel": "rm -rf build && mkdir build && babel src/index.js -o build/bundle.js",
     "build": "npm run babel && cp public/* build/",
     "start": "http-server build/ -p 8000 -c-1",
     "exec": "nodemon --exec babel-node src/index.js",
