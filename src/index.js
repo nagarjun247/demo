@@ -1,5 +1,5 @@
-import * as slide from './utils/slide';
-import * as narration from './utils/narration';
+import * as slide from './context/slide';
+import * as narration from './context/narration';
 
 window.initApp = function() {
   slide.initText();

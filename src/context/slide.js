@@ -1,13 +1,19 @@
-
-const setStore = (val) => {
-  window.localStorage.setItem('slideStore', val);
-};
+import * as utils from '../utils/utils';
 
 const getStore = () => {
   return window.localStorage.getItem('slideStore');
 };
 
-const fillText = (text) => {
+const setStore = (val) => {
+  window.localStorage.setItem('slideStore', val);
+};
+
+const resetStore = () => {
+  window.localStorage.removeItem('slideStore');
+};
+
+const fillText = (text_) => {
+  const text = utils.filterText(text_);
   $('#textarea-slides').val(text);
   M.textareaAutoResize($('#textarea-slides'));
 };
@@ -24,11 +30,11 @@ const saveText = () => {
 };
 
 const resetText = () => {
-  setStore(defaultText);
+  resetStore();
   initText();
 };
 
-const defaultText = 'Sample Slide';
+const defaultText = `Intro to the Pythagorean theorem`;
 
 export {
   initText, saveText, resetText
