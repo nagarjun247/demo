@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "babel": "rm -rf build && mkdir build && babel src/index.js -o build/bundle.js",
-    "build": "npm run babel && cp public/* build/",
-    "start": "http-server build/ -p 8000 -c-1",
-    "exec": "nodemon --exec babel-node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-x": "npm run babel && cp -R public/* build/",
+    "dev": "webpack --mode development && cp -R public/* build/",
+    "build": "webpack --mode production && cp -R public/* build/",
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start-x": "http-server build/ -p 8000 -c-1",
+    "exec": "nodemon --exec babel-node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,10 +27,14 @@
     "@babel/core": "^7.4.0",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.2",
+    "babel-loader": "^8.0.5",
     "http-server": "^0.11.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
-    "dotenv": "^7.0.0"
+    "dotenv-webpack": "^1.7.0"
   }
 }
