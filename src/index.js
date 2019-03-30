@@ -1,12 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as slide from './utils/slide';
+import * as narration from './utils/narration';
 
-const title = 'Hello from React!';
+window.initApp = function() {
+  slide.initText();
+  narration.initText();
+}
 
-ReactDOM.render(
-  <div>{title}</div>,
-  document.getElementById('app')
-);
+window.buildApp = function() {
+  slide.saveText();
+  narration.saveText();
+}
 
-console.log(title);
-console.log(process.env.MY_SECRET);
+window.resetApp = function() {
+  slide.resetText();
+  narration.resetText();
+}
