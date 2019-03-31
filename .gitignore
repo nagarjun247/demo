@@ -12,3 +12,4 @@ Thumbs.db
 ### Dev ###
 node_modules/
 build/
+temp/
