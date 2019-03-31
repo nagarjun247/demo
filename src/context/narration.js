@@ -34,12 +34,19 @@ const resetText = () => {
   initText();
 };
 
-const defaultText = `Now, we are going to get introduced to Pythagorean theorem.
-  Well, Pythagorean theorem is fun on its own, but you will see as you learn more
-  and more mathematics, that it's one of the cornerstone theorems  of all of Math.
-  It's useful in geometry. It's kind of the backbone of trigonometry.
+const defaultText = `
+Hello everyone.
 
-  So, enough of my talk. Let me tell you what the Pythagorean theorem is. Let's get started.`;
+Now let's see this new problem which involves linked list data structure.
+The problem is to find the intersection point of two given linked lists.
+
+So we are given two linked lists and their head pointers. Let's say H1 and H2.
+And we have to find whether these two linked lists, meet at some point or not.
+And if they meet we have to return that particular intersection node.
+
+So, let's discuss this by an example.
+Let's get started.
+`;
 
 export {
   initText, saveText, resetText

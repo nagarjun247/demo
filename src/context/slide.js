@@ -34,7 +34,9 @@ const resetText = () => {
   initText();
 };
 
-const defaultText = `Intro to the Pythagorean theorem`;
+const defaultText = `
+Intersection point of two given linked lists
+`;
 
 export {
   initText, saveText, resetText
