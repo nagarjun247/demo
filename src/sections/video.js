@@ -1,16 +1,6 @@
 
 const context = document.getElementById('webCanvas').getContext('2d');
-
 const font = "36px 'Reenie Beanie'";
-let text = 'Loading...';
-
-// let width = getTextWidth(text, font, context);
-let height = getTextHeight(text, font);
-
-let x = 0;
-let y = 0 + height;
-
-// ---------------------------
 
 const colorPurple = "#cb3594";
 const colorGreen = "#659b41";
@@ -62,16 +52,16 @@ function addClick(x, y, dragging) {
 
 $('#webCanvas').mousedown(function(e) {
   paint = true;
-  var mouseX = e.pageX - this.offsetLeft;
-  var mouseY = e.pageY - this.offsetTop;
+  const mouseX = e.pageX - this.offsetLeft;
+  const mouseY = e.pageY - this.offsetTop;
   addClick(mouseX, mouseY);
   redraw();
 });
 
 $('#webCanvas').mousemove(function(e) {
   if (paint) {
-    var mouseX = e.pageX - this.offsetLeft;
-    var mouseY = e.pageY - this.offsetTop;
+    const mouseX = e.pageX - this.offsetLeft;
+    const mouseY = e.pageY - this.offsetTop;
     addClick(mouseX, mouseY, true);
     redraw();
   }
@@ -87,8 +77,15 @@ $('#webCanvas').mouseleave(function(e) {
 
 // ---------------------------
 
+function getTextWidth(text, font, context) {
+  context.font = font;
+  const metrics = context.measureText(text);
+  // console.log(metrics);
+  return Math.ceil(metrics.width);
+}
+
 function getTextHeight(text, font) {
-  var test = document.createElement("div");
+  const test = document.createElement("div");
   test.textContent = text;
 
   test.style.font = font;
@@ -99,11 +96,11 @@ function getTextHeight(text, font) {
   test.style.visibility = 'hidden';
 
   document.body.appendChild(test);
-  var height = test.clientHeight;
-  var width = test.clientWidth;
+  const height = test.clientHeight;
+  const width = test.clientWidth;
   document.body.removeChild(test);
 
-  var metrics = {width, height};
+  const metrics = {width, height};
   // console.log(metrics);
 
   return metrics.height;
@@ -128,12 +125,20 @@ function drawText() {
   context.font = font;
   context.fillStyle = '#392613';
   context.textBaseline = 'bottom';
+
+  const text = $('#textarea-slide').val();
+  const width = getTextWidth(text, font, context);
+  const height = getTextHeight(text, font);
+  const x = 0;
+  const y = 0 + height;
+
   context.fillText(text, x, y);
+  // drawLimits(context, x, y, width, height);
 }
 
 function drawMarkers(elapsed) {
   context.lineJoin = "round";
-  for (var i = 0; i < clickX.length && (!recorded || (clickTime[i] < elapsed)); i++) {
+  for (let i = 0; i < clickX.length && (!recorded || (clickTime[i] < elapsed)); i++) {
     context.beginPath();
     if (clickDrag[i] && i > 0) {
       context.moveTo(clickX[i-1], clickY[i-1]);
@@ -149,16 +154,27 @@ function drawMarkers(elapsed) {
   }
 }
 
+function drawLimits(context, x, y, width, height) {
+  const testLine = function(ctx, x, y, len, style) {
+    ctx.strokeStyle = style;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + len, y);
+    ctx.closePath();
+    ctx.stroke();
+  };
+
+  testLine(context, x, y - height, width, 'red');
+  testLine(context, x, y, width, 'blue');
+}
+
 function redraw(elapsed) {
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);  // clears the canvas
   drawText();
   drawMarkers(elapsed);
 }
 
-const fillText = () => {
-  text = $('#textarea-slide').val();
-  redraw();
-};
+const draw = () => redraw();
 
 // ---------------------------
 
@@ -188,5 +204,5 @@ const replay = () => {
 // ---------------------------
 
 export {
-  fillText, record, replay
+  draw, record, replay
 };

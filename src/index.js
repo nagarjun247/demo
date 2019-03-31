@@ -1,29 +1,29 @@
-import * as slide from './context/slide';
-import * as narration from './context/narration';
-import * as expo from './context/expo';
+import * as slide from './sections/slide';
+import * as narration from './sections/narration';
+import * as video from './sections/video';
 
 window.initApp = function() {
   slide.initText();
   narration.initText();
-  expo.fillText();
+  video.draw();
 }
 
 window.buildApp = function() {
   slide.saveText();
   narration.saveText();
-  expo.fillText();
+  video.draw();
 }
 
 window.resetApp = function() {
   slide.resetText();
   narration.resetText();
-  expo.fillText();
+  video.draw();
 }
 
 window.recordApp = function() {
-  expo.record();
+  video.record();
 }
 
 window.replayApp = function() {
-  expo.replay();
+  video.replay();
 }
