@@ -7,12 +7,12 @@ Create editable educational videos
 
 ## How to install Chanakya
 Run the following commands on your system:
-`git clone https://github.com/abraj/chanakya.git`
-`cd chanakya`
-`npm install --only=prod`
-`npm install --only=dev`
-`npm run start`
+* `git clone https://github.com/abraj/chanakya.git`
+* `cd chanakya`
+* `npm install --only=prod`
+* `npm install --only=dev`
+* `npm run start`
 
-This will start `webpack-dev-server` at the URL `http://localhost:8080/`
+The last command will start `webpack-dev-server` at the URL `http://localhost:8080/`
 
 Now, open the URL [http://localhost:8080/](http://localhost:8080/) in any browser to view the running application.
