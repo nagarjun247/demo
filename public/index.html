@@ -31,6 +31,10 @@
       function replay() {
         window.replayApp();
       }
+      function recordModal() {
+        const instance = M.Modal.getInstance($('#rec-modal-tip'));
+        instance.open();
+      }
     </script>
   </head>
   <body>
@@ -52,7 +56,7 @@
         </div>
         <div class="card-panel grey lighten-5 z-depth-1" style="min-height: 18vh">
           <div class="left">
-            <a class="waves-effect waves-light btn" id="record" onclick="record()">Record</a>
+            <a class="waves-effect waves-light btn" id="record" onclick="recordModal()">Record</a>
             <a class="waves-effect waves-light btn" id="replay" onclick="replay()">Play</a>
             <audio id="playback">
               <source src="narration.mp3" type="audio/mpeg">
@@ -98,5 +102,30 @@
         });
       });
     </script>
+
+    <div id="rec-modal-tip" class="modal" style="width: 370px">
+      <div class="modal-content">
+        <h5>Tip</h5>
+        <p>While recording, you can annotate Video Expo using mouse/pen.</p>
+      </div>
+      <div class="modal-footer">
+        <div style="display: flex; justify-content: center;">
+          <a class="modal-close waves-effect waves-light btn green" onClick="record()">Got It!</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="msg-modal-alert" class="modal" style="width: 370px">
+      <div class="modal-content">
+        <h5>Alert</h5>
+        <p id="msg-modal-text"></p>
+      </div>
+      <div class="modal-footer">
+        <div style="display: flex; justify-content: center;">
+          <a class="modal-close waves-effect waves-light btn green">OK</a>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

@@ -1,3 +1,4 @@
+import * as utils from '../utils/utils';
 
 const context = document.getElementById('webCanvas').getContext('2d');
 const font = "36px 'Reenie Beanie'";
@@ -193,12 +194,12 @@ const replayCanvas = () => {
 
 const record = () => {
   if (!recorded) recordCanvas();
-  else alert('Recording already done!');
+  else utils.alertMsg('Recording already done!');
 };
 
 const replay = () => {
   if (recorded) replayCanvas();
-  else alert('First record before replay!');
+  else utils.alertMsg('First record before playing!');
 };
 
 // ---------------------------

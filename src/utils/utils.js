@@ -7,8 +7,13 @@ const filterText = (text) => {
     return xparts.join(' ');
   });
   return parts.join('\n\n');
-}
+};
+
+const alertMsg = (msg) => {
+  $('#msg-modal-text').text(msg);
+  M.Modal.getInstance($('#msg-modal-alert')).open();
+};
 
 export {
-  filterText
-}
+  filterText, alertMsg
+};
