@@ -14,8 +14,8 @@ const resetStore = () => {
 
 const fillText = (text_) => {
   const text = utils.filterText(text_);
-  $('#textarea-slides').val(text);
-  M.textareaAutoResize($('#textarea-slides'));
+  $('#textarea-slide').val(text);
+  M.textareaAutoResize($('#textarea-slide'));
 };
 
 const initText = () => {
@@ -25,7 +25,7 @@ const initText = () => {
 };
 
 const saveText = () => {
-  const data = $('#textarea-slides').val();
+  const data = $('#textarea-slide').val();
   setStore(data);
 };
 
