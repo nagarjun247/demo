@@ -1,8 +1,12 @@
+// import { fire } from '../firebase';
 import axios from 'axios';
 import * as utils from '../utils/utils';
 
 const textToSpeech = async (_text) => {
   try {
+    // const awsTTS = fire.func.httpsCallable('textToSpeech');
+    // const result = await awsTTS({ text });
+
     const text = utils.filterText(_text);
     const ttsEndpoint = 'https://o0oh9xd75a.execute-api.us-east-1.amazonaws.com/default/textToSpeech';
 
