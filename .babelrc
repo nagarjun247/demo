@@ -1,6 +1,8 @@
 {
   "presets": [
-    "@babel/preset-env",
+    // "@babel/preset-env",
+    ['@babel/preset-env', { modules: false, useBuiltIns: 'usage' }],  // Support async/await
+
     "@babel/preset-react"
   ]
 }
