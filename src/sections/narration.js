@@ -15,6 +15,7 @@ const resetStore = () => {
 const fillText = (text_) => {
   const text = utils.filterText(text_);
   $('#textarea-narration').val(text);
+  setStore(text);
   M.textareaAutoResize($('#textarea-narration'));
 };
 
@@ -49,5 +50,5 @@ Let's get started.
 `;
 
 export {
-  initText, saveText, resetText
+  initText, saveText, resetText, getStore
 };

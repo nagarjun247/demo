@@ -15,6 +15,7 @@ const resetStore = () => {
 const fillText = (text_) => {
   const text = utils.filterText(text_);
   $('#textarea-slide').val(text);
+  setStore(text);
   M.textareaAutoResize($('#textarea-slide'));
 };
 
@@ -39,5 +40,5 @@ Intersection point of two given linked lists
 `;
 
 export {
-  initText, saveText, resetText
+  initText, saveText, resetText, getStore
 };

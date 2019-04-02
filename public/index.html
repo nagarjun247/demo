@@ -75,21 +75,31 @@
             </div>
           </div>
 
-          <div>
+          <div style="margin-top: 10px">
             <div class="left">
-              <h6 id="app-version"></h6>
             </div>
 
-            <div class="right">
-              <span id="loading" style="display: none">
-                <i class="material-icons red-text">autorenew</i>
-              </span>
-              <span id="edited" style="display: none">
-                <i class="material-icons orange-text">save</i>
-              </span>
-              <span id="ok" style="display: none">
-                <i class="material-icons green-text">check_circle</i>
-              </span>
+            <div class="right" style="display: flex">
+              <div>
+                <span id="status-loading" style="display: none">
+                  <i class="material-icons red-text">autorenew</i>
+                </span>
+                <span id="status-error" style="display: none">
+                  <i class="material-icons red-text">warning</i>
+                </span>
+                <span id="status-edited" style="display: none">
+                  <i class="material-icons orange-text">save</i>
+                </span>
+                <span id="status-ok" style="display: none">
+                  <i class="material-icons green-text">check_circle</i>
+                </span>
+              </div>
+              <div>
+                <span>&nbsp;&nbsp;</span>
+              </div>
+              <div>
+                <span id="app-version" style="font-size: 120%"></span>
+              </div>
             </div>
           </div>
         </div>

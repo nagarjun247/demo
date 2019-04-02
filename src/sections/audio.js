@@ -37,13 +37,16 @@ const _load = async () => {
     playbackMedia.src = audioURL;
     playback.load();
   } else {
-    console.warn('Invalid audioURL:', audioURL);
+    console.error('Invalid audioURL:', audioURL);
+    return -1;
   }
 
   // Ref: https://stackoverflow.com/questions/7692082/loading-audio-element-after-dynamically-changing-the-source
   // NOTE: This will work only when audio#playback itself contains media src attribute
   // const playback = document.getElementById("playback");
   // playback.src = url;
+
+  return 0;
 };
 
 export {
