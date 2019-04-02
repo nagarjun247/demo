@@ -13,3 +13,6 @@ Thumbs.db
 node_modules/
 build/
 temp/
+
+### Local ####
+.env

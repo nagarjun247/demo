@@ -19,3 +19,8 @@ export const isUrl = string => {
     try { return Boolean(new URL(string)); }
     catch(e) { return false; }
 };
+
+export const showAppVersion = () => {
+  const appVersion = require('../../package.json').version;
+  $('#app-version').text('v'+appVersion);
+};

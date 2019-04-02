@@ -59,18 +59,38 @@
         <div style="min-height: 2vh">
         </div>
         <div class="card-panel grey lighten-5 z-depth-1" style="min-height: 18vh">
-          <div class="left">
-            <a class="waves-effect waves-light btn" id="record" onclick="recordModal()">Record</a>
-            <a class="waves-effect waves-light btn" id="replay" onclick="replay()">Play</a>
-            <audio id="playback">
-              <source id="playback-mp3" src="oops.mp3" type="audio/mpeg">
-              Audio unsupported by browser.
-            </audio>
+          <div style="height: 60px">
+            <div class="left">
+              <a class="waves-effect waves-light btn" id="record" onclick="recordModal()">Record</a>
+              <a class="waves-effect waves-light btn" id="replay" onclick="replay()">Play</a>
+              <audio id="playback">
+                <source id="playback-mp3" src="oops.mp3" type="audio/mpeg">
+                Audio unsupported by browser.
+              </audio>
+            </div>
+
+            <div class="right">
+              <a class="waves-effect waves-light btn right-align blue" id="build" onclick="build()">Save</a>
+              <a class="waves-effect waves-light btn right-align red" id="reset" onclick="reset()">Reset</a>
+            </div>
           </div>
 
-          <div class="right">
-            <a class="waves-effect waves-light btn right-align blue" id="build" onclick="build()">Save</a>
-            <a class="waves-effect waves-light btn right-align red" id="reset" onclick="reset()">Reset</a>
+          <div>
+            <div class="left">
+              <h6 id="app-version"></h6>
+            </div>
+
+            <div class="right">
+              <span id="loading" style="display: none">
+                <i class="material-icons red-text">autorenew</i>
+              </span>
+              <span id="edited" style="display: none">
+                <i class="material-icons orange-text">save</i>
+              </span>
+              <span id="ok" style="display: none">
+                <i class="material-icons green-text">check_circle</i>
+              </span>
+            </div>
           </div>
         </div>
       </div>
