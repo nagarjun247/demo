@@ -1,6 +1,6 @@
 {
   "name": "chanakya",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Make editable educational videos",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,10 @@
     "dev": "webpack --mode development && cp -R public/* build/",
     "build": "webpack --mode production && cp -R public/* build/",
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "xp": "npm --no-git-tag-version version patch",
+    "patch": "npm --no-git-tag-version version patch && git commit -am 'New patch release'",
+    "minor": "npm version minor -m 'minor release: version %s'",
+    "major": "npm version major -m 'Major release: version %s'",
     "start-x": "http-server build/ -p 8000 -c-1",
     "exec": "nodemon --exec babel-node src/index.js"
   },
