@@ -1,5 +1,5 @@
 # Chanakya
-Create editable educational videos
+Create editable educational videos. View a [demo here](https://chanakya-dev.firebaseapp.com/).
 
 ## Pre-requisites
 * Install [git](https://www.atlassian.com/git/tutorials/install-git)
