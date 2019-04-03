@@ -106,7 +106,7 @@ Now, you can delete the local and remote-tracking branches in your local reposit
 
 To get the latest copy of upstream repository with _your_ changes also integrated into it, follow the steps already mentioned in the previous section.
 
-_NOTE:_ It is recommended never to merge any of your changes directly into your `master` branch. Rather, sync your `master` branch only by pulling in the latest changes from the _upstream_ repository.
+_NOTE:_ It is recommended never to merge any of your changes directly into your local `master` branch. Rather, sync your `master` branch only by pulling in the latest changes from the _upstream_ repository.
 
 ## Useful Tip
 In particular, the following git command is very useful for viewing all your commits as a tree structure in your terminal itself.
