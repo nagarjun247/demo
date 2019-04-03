@@ -18,4 +18,4 @@ The last command will start `webpack-dev-server` at the URL `http://localhost:80
 Now, open the URL [http://localhost:8080/](http://localhost:8080/) in any browser to view the running application.
 
 ## Contributing to Chanakya
-Please [go here](CONTRIBUTING.md) for a detailed guide to contributing.
+Please [visit here](CONTRIBUTING.md) for a detailed guide to contributing.
