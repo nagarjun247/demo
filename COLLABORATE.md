@@ -17,14 +17,13 @@ Let's understand the simplified GitHub workflow.
 ## Steps involved
 * `git clone https://github.com/abraj/chanakya`
 * `cd chanakya`
-* `git branch awesome-feature`
-* `git checkout awesome-feature`
-* Make changes to `awesome-feature` branch and commit
+* `git checkout -b awesome-feature`
+* Make changes to `awesome-feature` branch locally and commit
 * `git push -u origin awesome-feature`
-* Create '_pull request_' and get feedback
-* Make any further changes to `awesome-feature` proposed by others
+* Create '_pull request_' and get others' feedback
+* Make any further changes to `awesome-feature` as proposed by others
 * `git push`
-* The pull request gets merged
+* The pull request gets merged by admin
 * Good Work!
 
 For a better explanation of the steps [visit here](CONTRIBUTING.md).
