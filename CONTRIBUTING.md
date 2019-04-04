@@ -1,5 +1,7 @@
 # Contributing to Chanakya
 
+<span style="display:block; padding: 5px; border: 1px solid teal; border-radius: 5px">**NOTE:** If you have _write access_ to this repository, then [visit here](COLLABORATE.md) for collaborating.</span>
+
 Here, we are going to explain how can you get started quickly with contributing to this repository. We are going to assume that you are completely new to open-source collaboration using GitHub and therefore we will try to explain each of the steps in a simple manner. Let's assume that your GitHub username is `youraccount` and therefore your GitHub profile URL is `https://github.com/youraccount`.
 
 After browsing through the Chanakya project (https://github.com/abraj/chanakya), you somewhat liked it and wish to contribute to it. You have gone through the documentation and source code a bit, and now want to start contributing to the project. However, you are new to GitHub collaboration and not sure about how to get started.
