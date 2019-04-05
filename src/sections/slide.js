@@ -1,16 +1,18 @@
 import axios from 'axios';
 import * as utils from '../utils/utils';
 
+const KEY_SLIDE_STORE = 'slideStore';
+
 const getStore = () => {
-  return window.localStorage.getItem('slideStore');
+  return window.localStorage.getItem(KEY_SLIDE_STORE);
 };
 
 const setStore = (val) => {
-  window.localStorage.setItem('slideStore', val);
+  window.localStorage.setItem(KEY_SLIDE_STORE, val);
 };
 
 const resetStore = () => {
-  window.localStorage.removeItem('slideStore');
+  window.localStorage.removeItem(KEY_SLIDE_STORE);
 };
 
 const fillText = (text_) => {
@@ -20,7 +22,7 @@ const fillText = (text_) => {
   M.textareaAutoResize($('#textarea-slide'));
 };
 
-const getSlideData = async () => {
+const fetchSlideData = async () => {
   const result = await axios.get('/data/slide.txt');
   if (result.status === 200) {
     return result.data;
@@ -31,13 +33,10 @@ const getSlideData = async () => {
 };
 
 const initText = async () => {
-  const data = getStore();
-  if (data) {
-    fillText(data);
-  } else {
-    const defaultText = await getSlideData();
-    fillText(defaultText);
-  }
+  let data = getStore();
+  if (!data) data = await fetchSlideData();
+  if (!data) data = '';
+  fillText(data);
 };
 
 const saveText = () => {

@@ -25,6 +25,8 @@ window.initApp = async function() {
 
   await slide.initText();
   await narration.initText();
+  await video.loadAnnotation();
+
   video.draw();
   const p1 = audio._load();
 
@@ -41,6 +43,7 @@ window.buildApp = async function() {
 
   slide.saveText();
   narration.saveText();
+
   video.draw();
   const p1 = audio._load();
 
@@ -55,6 +58,8 @@ window.resetApp = async function() {
 
   await slide.resetText();
   await narration.resetText();
+  await video.reloadAnnotation();
+
   video.draw();
   const p1 = audio._load();
 

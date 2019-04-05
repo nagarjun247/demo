@@ -14,12 +14,12 @@ const sizeNormal = 5;
 const sizeLarge = 10;
 const sizeHuge = 15;
 
-let clickX;
-let clickY;
-let clickDrag;
-let clickColor;
-let clickSize;
-let clickTime;
+let clickX = [];
+let clickY = [];
+let clickDrag = [];
+let clickColor = [];
+let clickSize = [];
+let clickTime = [];
 
 let currColor;
 let currSize;
@@ -43,8 +43,6 @@ function resetMarkers() {
 }
 
 function resetApp() {
-  resetMarkers();
-
   currColor = colorGreen;
   currSize = sizeSmall;
   paint = false;
@@ -125,7 +123,6 @@ function stopTimer() {
 
 const aud = document.getElementById("playback");
 resetApp();
-loadAnnotationData();
 
 // WARN: This is also triggered during forward seek!
 aud.onplay = function() {
@@ -193,18 +190,21 @@ $('#webCanvas').mouseleave(function(e) {
 
 // ---------------------------
 
-async function loadAnnotationData() {
-  const data = await getAnnotationData();
-  const data_obj = JSON.parse(data);
+const KEY_ANNOT_STORE = 'annotStore';
 
-  resetMarkers();
-  for (let i = 0; i < data_obj.length; i++) {
-    const [x, y, drag, color, size, time] = data_obj[i];
-    addClickData({x, y, drag, color, size, time});
-  }
-}
+const getStoreAnn = () => {
+  return window.localStorage.getItem(KEY_ANNOT_STORE);
+};
 
-async function getAnnotationData() {
+const setStoreAnn = (val) => {
+  window.localStorage.setItem(KEY_ANNOT_STORE, val);
+};
+
+const resetStoreAnn = () => {
+  window.localStorage.removeItem(KEY_ANNOT_STORE);
+};
+
+async function fetchAnnotationData() {
   const result = await axios.get('/data/annotation.txt');
   if (result.status === 200) {
     return JSON.stringify(result.data);
@@ -212,6 +212,27 @@ async function getAnnotationData() {
     console.error('Unable to fetch: /data/annotation.txt');
     return '[]';
   }
+}
+
+async function loadAnnotation() {
+  let data = getStoreAnn();
+  if (!data) data = await fetchAnnotationData();
+  if (!data) data = '[]';
+
+  const data_obj = JSON.parse(data);
+
+  resetMarkers();
+  for (let i = 0; i < data_obj.length; i++) {
+    const [x, y, drag, color, size, time] = data_obj[i];
+    addClickData({x, y, drag, color, size, time});
+  }
+
+  setStoreAnn(data);
+}
+
+async function reloadAnnotation() {
+  resetStoreAnn();
+  await loadAnnotation();
 }
 
 // ---------------------------
@@ -346,5 +367,5 @@ const resetMedia = async () => {
 // ---------------------------
 
 export {
-  draw, record, play, pause, stop, resetMedia
+  draw, record, play, pause, stop, resetMedia, loadAnnotation, reloadAnnotation
 };
