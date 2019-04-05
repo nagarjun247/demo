@@ -37,6 +37,8 @@ window.initApp = async function() {
 window.buildApp = async function() {
   utils.showStatus('loading');
 
+  video.resetMedia();
+
   slide.saveText();
   narration.saveText();
   video.draw();
@@ -48,6 +50,8 @@ window.buildApp = async function() {
 
 window.resetApp = async function() {
   utils.showStatus('loading');
+
+  video.resetMedia();
 
   slide.resetText();
   narration.resetText();

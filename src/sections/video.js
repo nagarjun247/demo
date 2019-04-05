@@ -54,7 +54,14 @@ function resetApp() {
   reset = true;
   recording = false;
 
+  updateMediaTimer();
   updateMediaProgress();
+}
+
+function updateMediaTimer() {
+  const zero = utils.get_mm_ss(0);
+  $('#media-elapsed').text(zero);
+  $('#media-duration').text(zero);
 }
 
 function updateMediaProgress() {
