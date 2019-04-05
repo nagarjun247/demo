@@ -70,3 +70,6 @@ window.pauseMedia = function() {
 window.stopMedia = function() {
   video.stop();
 };
+window.resetMedia = function() {
+  video.resetMedia();
+};

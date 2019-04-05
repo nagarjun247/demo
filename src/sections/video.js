@@ -42,6 +42,8 @@ function resetMarkers() {
 }
 
 function resetApp() {
+  resetMarkers();
+
   currColor = colorGreen;
   currSize = sizeSmall;
   paint = false;
@@ -51,6 +53,14 @@ function resetApp() {
   duration = 0;
   reset = true;
   recording = false;
+
+  updateMediaProgress();
+}
+
+function updateMediaProgress() {
+  let progress = 0;
+  if (!reset) progress = Math.ceil((aud.currentTime / aud.duration) * 100);
+  $('#progress-bar').css('width', `${progress}%`);
 }
 
 function _runTimer() {
@@ -61,9 +71,7 @@ function _runTimer() {
       // duration = new Date().getTime() - startTime;
       duration = aud.currentTime * 1000;
       redraw(duration);
-
-      const progress = Math.ceil((aud.currentTime / aud.duration) * 100);
-      $('#progress-bar').css('width', `${progress}%`);
+      updateMediaProgress();
 
       const elap1 = utils.get_mm_ss(duration/1000);
       const elap0 = $('#media-elapsed').text();
@@ -94,6 +102,7 @@ function final_stall() {
   reset = true;
   elapsed = 0;
   duration = 0;
+  updateMediaProgress();
 }
 
 function pauseTimer() {
@@ -107,7 +116,6 @@ function stopTimer() {
 
 // ---------------------------
 
-resetMarkers();
 resetApp();
 
 const aud = document.getElementById("playback");
@@ -264,9 +272,6 @@ const draw = () => redraw();
 // ---------------------------
 
 const record = () => {
-  resetMarkers();
-  resetApp();
-  final_stall();  // if recording attempted during pause
   recording = true;
   aud.play();
 };
@@ -280,12 +285,27 @@ const pause = () => {
 };
 
 const stop = () => {
-  aud.pause();
-  setTimeout(() => final_stall(), 50);
+  return new Promise((resolve, reject) => {
+    aud.pause();
+    setTimeout(() => {
+      final_stall();
+      resolve();
+    }, 50);
+  });
+};
+
+const isMediaPlaying = () => {
+  // Ref: https://stackoverflow.com/a/31133401
+  return !!(aud.currentTime > 0 && !aud.paused && !aud.ended && aud.readyState > 2);
+};
+
+const resetMedia = async () => {
+  if (isMediaPlaying()) await stop();
+  resetApp();
 };
 
 // ---------------------------
 
 export {
-  draw, record, play, pause, stop
+  draw, record, play, pause, stop, resetMedia
 };

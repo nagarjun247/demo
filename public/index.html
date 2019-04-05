@@ -22,7 +22,7 @@
       function build() {
         window.buildApp();
       }
-      function reset() {
+      function resetApp() {
         window.resetApp();
       }
 
@@ -42,6 +42,7 @@
       function recordModal() {
         const instance = M.Modal.getInstance($('#rec-modal-tip'));
         instance.open();
+        window.resetMedia();
       }
     </script>
   </head>
@@ -102,8 +103,8 @@
             </div>
 
             <div class="right">
-              <a class="waves-effect waves-light btn right-align blue" id="build" onclick="build()">Save</a>
-              <a class="waves-effect waves-light btn right-align red" id="reset" onclick="reset()">Reset</a>
+              <a class="waves-effect waves-light btn right-align blue" onclick="build()">Save</a>
+              <a class="waves-effect waves-light btn right-align red" onclick="resetApp()">Reset</a>
             </div>
           </div>
 
