@@ -23,8 +23,8 @@ window.initApp = async function() {
 
   initListeners();
 
-  slide.initText();
-  narration.initText();
+  await slide.initText();
+  await narration.initText();
   video.draw();
   const p1 = audio._load();
 
@@ -53,8 +53,8 @@ window.resetApp = async function() {
 
   video.resetMedia();
 
-  slide.resetText();
-  narration.resetText();
+  await slide.resetText();
+  await narration.resetText();
   video.draw();
   const p1 = audio._load();
 

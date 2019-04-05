@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as utils from '../utils/utils';
 
 const getStore = () => {
@@ -19,10 +20,24 @@ const fillText = (text_) => {
   M.textareaAutoResize($('#textarea-narration'));
 };
 
-const initText = () => {
+const getNarrationData = async () => {
+  const result = await axios.get('/data/narration.txt');
+  if (result.status === 200) {
+    return result.data;
+  } else {
+    console.error('Unable to fetch: /data/narration.txt');
+    return '';
+  }
+};
+
+const initText = async () => {
   const data = getStore();
-  if (data) fillText(data);
-  else fillText(defaultText);
+  if (data) {
+    fillText(data);
+  } else {
+    const defaultText = await getNarrationData();
+    fillText(defaultText);
+  }
 };
 
 const saveText = () => {
@@ -30,24 +45,10 @@ const saveText = () => {
   setStore(data);
 };
 
-const resetText = () => {
+const resetText = async () => {
   resetStore();
-  initText();
+  await initText();
 };
-
-const defaultText = `
-Hello everyone.
-
-Now let's see this new problem which involves linked list data structure.
-The problem is to find the intersection point of two given linked lists.
-
-So we are given two linked lists and their head pointers. Let's say H1 and H2.
-And we have to find whether these two linked lists, meet at some point or not.
-And if they meet we have to return that particular intersection node.
-
-So, let's discuss this by an example.
-Let's get started.
-`;
 
 export {
   initText, saveText, resetText, getStore

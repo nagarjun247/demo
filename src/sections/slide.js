@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as utils from '../utils/utils';
 
 const getStore = () => {
@@ -19,10 +20,24 @@ const fillText = (text_) => {
   M.textareaAutoResize($('#textarea-slide'));
 };
 
-const initText = () => {
+const getSlideData = async () => {
+  const result = await axios.get('/data/slide.txt');
+  if (result.status === 200) {
+    return result.data;
+  } else {
+    console.error('Unable to fetch: /data/slide.txt');
+    return '';
+  }
+};
+
+const initText = async () => {
   const data = getStore();
-  if (data) fillText(data);
-  else fillText(defaultText);
+  if (data) {
+    fillText(data);
+  } else {
+    const defaultText = await getSlideData();
+    fillText(defaultText);
+  }
 };
 
 const saveText = () => {
@@ -30,14 +45,10 @@ const saveText = () => {
   setStore(data);
 };
 
-const resetText = () => {
+const resetText = async () => {
   resetStore();
-  initText();
+  await initText();
 };
-
-const defaultText = `
-Intersection point of two given linked lists
-`;
 
 export {
   initText, saveText, resetText, getStore

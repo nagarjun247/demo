@@ -209,6 +209,7 @@ async function getAnnotationData() {
   if (result.status === 200) {
     return JSON.stringify(result.data);
   } else {
+    console.error('Unable to fetch: /data/annotation.txt');
     return '[]';
   }
 }

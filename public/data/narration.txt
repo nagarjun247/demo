@@ -1,0 +1,11 @@
+Hello everyone!
+
+Now let's see this new problem which involves linked list data structure.
+The problem is to find the intersection point of two given linked lists.
+
+So we are given two linked lists and their head pointers. Let's say H1 and H2.
+And we have to find whether these two linked lists, meet at some point or not.
+And if they meet we have to return that particular intersection node.
+
+So, let's discuss this by an example.
+Let's get started.
