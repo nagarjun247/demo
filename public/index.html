@@ -92,7 +92,6 @@
         <div class="card-panel grey lighten-5 z-depth-1" style="min-height: 18vh">
           <div style="height: 60px">
             <div class="left">
-              <a class="waves-effect waves-light btn" onclick="recordModal()">Record</a>
               <a class="waves-effect waves-light btn" onclick="play()">Play</a>
               <a class="waves-effect waves-light btn" onclick="pause()">Pause</a>
               <a class="waves-effect waves-light btn" onclick="stop()">Stop</a>
@@ -110,6 +109,12 @@
 
           <div style="margin-top: 10px">
             <div class="left">
+              <div class="" style="margin-top: -15px">
+                <a class="waves-effect waves-light btn" style="text-transform: none" onclick="recordModal()">
+                  <i class="material-icons left">edit</i>
+                  <span style="display: inline-block; margin-left: -10px">Annotate</span>
+                </a>
+              </div>
             </div>
 
             <div class="right" style="display: flex">
@@ -158,11 +163,14 @@
     <div id="rec-modal-tip" class="modal" style="width: 370px">
       <div class="modal-content">
         <h5>Tip</h5>
-        <p>While recording, you can annotate Video Expo using mouse/pen.</p>
+        <p>
+          You can annotate Video Expo using mouse/pen.<br /><br />
+          <i><b>NOTE:</b> Previous annotation will be removed.</i>
+        </p>
       </div>
       <div class="modal-footer">
         <div style="display: flex; justify-content: center;">
-          <a class="modal-close waves-effect waves-light btn green" onClick="record()">Got It!</a>
+          <a class="modal-close waves-effect waves-light btn green" onClick="record()">Start</a>
         </div>
       </div>
     </div>
