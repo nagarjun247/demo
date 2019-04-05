@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as utils from '../utils/utils';
 
 const context = document.getElementById('webCanvas').getContext('2d');
@@ -54,19 +55,18 @@ function resetApp() {
   reset = true;
   recording = false;
 
-  updateMediaTimer();
   updateMediaProgress();
 }
 
-function updateMediaTimer() {
-  const zero = utils.get_mm_ss(0);
-  $('#media-elapsed').text(zero);
-  $('#media-duration').text(zero);
-}
-
 function updateMediaProgress() {
-  let progress = 0;
-  if (!reset) progress = Math.ceil((aud.currentTime / aud.duration) * 100);
+  let progress;
+  if (reset) {
+    progress = 0;
+    $('#media-elapsed').text(utils.get_mm_ss(0));
+    $('#media-duration').text(utils.get_mm_ss(aud.duration));
+  } else {
+    progress = Math.ceil((aud.currentTime / aud.duration) * 100);
+  }
   $('#progress-bar').css('width', `${progress}%`);
 }
 
@@ -123,9 +123,9 @@ function stopTimer() {
 
 // ---------------------------
 
-resetApp();
-
 const aud = document.getElementById("playback");
+resetApp();
+loadAnnotationData();
 
 // WARN: This is also triggered during forward seek!
 aud.onplay = function() {
@@ -156,6 +156,15 @@ function addClick(x, y, dragging) {
   clickTime.push(duration);
 }
 
+function addClickData(data) {
+  clickX.push(data.x);
+  clickY.push(data.y);
+  clickDrag.push(data.drag);
+  clickColor.push(data.color);
+  clickSize.push(data.size);
+  clickTime.push(data.time);
+}
+
 // TODO: Validate if strictly (timer-bound && recording-bound) mouse operations are okay
 $('#webCanvas').mousedown(function(e) {
   if (recording && timer) {
@@ -181,6 +190,28 @@ $('#webCanvas').mouseup(function(e) {
 $('#webCanvas').mouseleave(function(e) {
   if (recording && timer) paint = false;
 });
+
+// ---------------------------
+
+async function loadAnnotationData() {
+  const data = await getAnnotationData();
+  const data_obj = JSON.parse(data);
+
+  resetMarkers();
+  for (let i = 0; i < data_obj.length; i++) {
+    const [x, y, drag, color, size, time] = data_obj[i];
+    addClickData({x, y, drag, color, size, time});
+  }
+}
+
+async function getAnnotationData() {
+  const result = await axios.get('/data/annotation.txt');
+  if (result.status === 200) {
+    return JSON.stringify(result.data);
+  } else {
+    return '[]';
+  }
+}
 
 // ---------------------------
 
