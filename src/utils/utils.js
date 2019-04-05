@@ -55,3 +55,13 @@ export const throttleInput = (func) => {
 
   return debouncedFuncES6;
 }
+
+export const get_mm_ss = (_sec) => {
+  const sec = Math.round(_sec);
+
+  let mm = '' + Math.floor(sec / 60);
+  let ss = '' + (sec % 60);
+  if (ss.length < 2) ss = '0'+ss;
+
+  return `${mm}:${ss}`;
+};

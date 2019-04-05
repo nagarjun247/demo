@@ -25,12 +25,20 @@
       function reset() {
         window.resetApp();
       }
+
       function record() {
-        window.recordApp();
+        window.recordMedia();
       }
-      function replay() {
-        window.replayApp();
+      function play() {
+        window.playMedia();
       }
+      function pause() {
+        window.pauseMedia();
+      }
+      function stop() {
+        window.stopMedia();
+      }
+
       function recordModal() {
         const instance = M.Modal.getInstance($('#rec-modal-tip'));
         instance.open();
@@ -51,9 +59,31 @@
           <div class="preloadFont">.</div>
           <div style="margin-top: -5px"><span class="grey-text" style="font-size: 90%;">Video Expo</span></div>
 
-          <canvas id="webCanvas" width="700" height="400" style="border: 1px solid teal; cursor: pointer;"></canvas>
-          <!-- <canvas id="webCanvas" width="700" height="400" style="border: 1px solid teal; cursor: url(images/pencil_16x16.png) 0 16,pointer;"></canvas> -->
-          <!-- <canvas id="webCanvas" style="border: 1px solid teal; width: 100%; height: 70vh"></canvas> -->
+          <div style="width: 700px; height: 400px">
+            <!-- this.offsetLeft, this.offsetTop -->
+            <!-- <div class="" style="position: relative; height: 5px; width: 5px">
+              <div style="position: absolute; top: 150px; width: 100%">
+                <div class="center-align">
+                  <i class="material-icons grey-text text-lighten-3" style="font-size: 100px; cursor: pointer;">play_arrow</i>
+                </div>
+              </div>
+            </div> -->
+
+            <div>
+              <canvas id="webCanvas" width="700" height="400" style="border: 1px solid teal"></canvas>
+              <!-- <canvas id="webCanvas" width="700" height="400" style="border: 1px solid teal; cursor: url(images/pencil_16x16.png) 0 16,pointer;"></canvas> -->
+              <!-- <canvas id="webCanvas" style="border: 1px solid teal; width: 100%; height: 70vh"></canvas> -->
+            </div>
+            <div style="margin-top: -11px">
+              <div class="progress red lighten-4" style="height: 5px">
+                <div id="progress-bar" class="determinate red darken-1" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="right-align" style="padding-right: 10px">
+              <h6 class="light-blue-text text-darken-2"><span id="media-elapsed">0:00</span><span>&nbsp;/&nbsp;</span><span id="media-duration">0:00</span></h6>
+            </div>
+          </div>
+
         </div>
 
         <div style="min-height: 2vh">
@@ -61,8 +91,10 @@
         <div class="card-panel grey lighten-5 z-depth-1" style="min-height: 18vh">
           <div style="height: 60px">
             <div class="left">
-              <a class="waves-effect waves-light btn" id="record" onclick="recordModal()">Record</a>
-              <a class="waves-effect waves-light btn" id="replay" onclick="replay()">Play</a>
+              <a class="waves-effect waves-light btn" onclick="recordModal()">Record</a>
+              <a class="waves-effect waves-light btn" onclick="play()">Play</a>
+              <a class="waves-effect waves-light btn" onclick="pause()">Pause</a>
+              <a class="waves-effect waves-light btn" onclick="stop()">Stop</a>
               <audio id="playback">
                 <source id="playback-mp3" src="oops.mp3" type="audio/mpeg">
                 Audio unsupported by browser.
