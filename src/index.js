@@ -43,6 +43,7 @@ window.buildApp = async function() {
 
   slide.saveText();
   narration.saveText();
+  video.saveAnnotation();
 
   video.draw();
   const p1 = audio._load();
@@ -81,4 +82,7 @@ window.stopMedia = function() {
 };
 window.resetMedia = function() {
   video.resetMedia();
+};
+window.resetAnnotation = function() {
+  video.resetAnnotation();
 };

@@ -43,6 +43,7 @@
         const instance = M.Modal.getInstance($('#rec-modal-tip'));
         instance.open();
         window.resetMedia();
+        window.resetAnnotation();
       }
     </script>
   </head>
@@ -80,11 +81,20 @@
                 <div id="progress-bar" class="determinate red darken-1" style="width: 0%"></div>
               </div>
             </div>
-            <div class="right-align" style="padding-right: 10px">
-              <h6 class="light-blue-text text-darken-2"><span id="media-elapsed">0:00</span><span>&nbsp;/&nbsp;</span><span id="media-duration">0:00</span></h6>
+
+            <div>
+              <div class="left">
+                <a class="waves-effect waves-light btn-flat grey-text" download="annotation.txt" id="download-annot-data">
+                  <i class="material-icons">gesture</i>
+                </a>
+              </div>
+              <div class="right">
+                <div class="right-align" style="padding-right: 10px">
+                  <h6 class="light-blue-text text-darken-2"><span id="media-elapsed">0:00</span><span>&nbsp;/&nbsp;</span><span id="media-duration">0:00</span></h6>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
 
         <div style="min-height: 2vh">

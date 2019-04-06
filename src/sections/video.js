@@ -33,14 +33,14 @@ let recording;
 
 // ---------------------------
 
-function resetMarkers() {
+const resetAnnotation = () => {
   clickX = [];
   clickY = [];
   clickDrag = [];
   clickColor = [];
   clickSize = [];
   clickTime = [];
-}
+};
 
 function resetApp() {
   currColor = colorGreen;
@@ -221,7 +221,7 @@ async function loadAnnotation() {
 
   const data_obj = JSON.parse(data);
 
-  resetMarkers();
+  resetAnnotation();
   for (let i = 0; i < data_obj.length; i++) {
     const [x, y, drag, color, size, time] = data_obj[i];
     addClickData({x, y, drag, color, size, time});
@@ -234,6 +234,35 @@ async function reloadAnnotation() {
   resetStoreAnn();
   await loadAnnotation();
 }
+
+function dumpAnnotationData() {
+  const annotationData = [];
+
+  for (let i = 0; i < clickX.length; i++) {
+    const x = clickX[i];
+    const y = clickY[i];
+    const drag = clickDrag[i];
+    const color = clickColor[i];
+    const size = clickSize[i];
+    let time = clickTime[i];
+
+    time = Math.round(time*100)/100;
+    const data = [x, y, drag, color, size, time];
+    annotationData.push(data);
+  }
+
+  return JSON.stringify(annotationData);
+}
+
+const saveAnnotation = () => {
+  const data = dumpAnnotationData();
+
+  const encodedData = encodeURIComponent(data);
+  const dataUri = "data:text/plain;charset=utf-8," + encodedData;
+
+  setStoreAnn(data);
+  $('#download-annot-data').attr('href', dataUri);
+};
 
 // ---------------------------
 
@@ -367,5 +396,6 @@ const resetMedia = async () => {
 // ---------------------------
 
 export {
-  draw, record, play, pause, stop, resetMedia, loadAnnotation, reloadAnnotation
+  draw, record, play, pause, stop, resetMedia,
+  loadAnnotation, reloadAnnotation, resetAnnotation, saveAnnotation,
 };
