@@ -61,15 +61,12 @@
           <div class="preloadFont">.</div>
           <div style="margin-top: -5px"><span class="grey-text" style="font-size: 90%;">Video Expo</span></div>
 
-          <div style="width: 700px; height: 400px">
-            <!-- this.offsetLeft, this.offsetTop -->
-            <!-- <div class="" style="position: relative; height: 5px; width: 5px">
-              <div style="position: absolute; top: 150px; width: 100%">
-                <div class="center-align">
-                  <i class="material-icons grey-text text-lighten-3" style="font-size: 100px; cursor: pointer;">play_arrow</i>
-                </div>
-              </div>
-            </div> -->
+          <div id="video-container" style="width: 700px; height: 400px;">
+            <div id="play-button-overlay" style="position: absolute;">
+              <a href="javascript:void(0)" onclick="play()">
+                <i class="material-icons circle grey-text text-lighten-3" style="font-size: 100px;">play_arrow</i>
+              </a>
+            </div>
 
             <div>
               <canvas id="webCanvas" width="700" height="400" style="border: 1px solid teal"></canvas>

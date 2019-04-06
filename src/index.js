@@ -18,10 +18,24 @@ const initListeners = () => {
   }));
 };
 
+const positionPlayButton = () => {
+  // const top_px = $('#play-button-overlay').css('top');  // 30.9062px
+  // const left_px = $('#play-button-overlay').css('left');  // 10.875px
+
+  const top = 21;  // Hardcoded as of now
+  const left = 11;  // Hardcoded as of now
+  const _top = top + 150;
+  const _left = left + 300;
+
+  $('#play-button-overlay').css('top', `${_top}px`)
+  $('#play-button-overlay').css('left', `${_left}px`)
+};
+
 window.initApp = async function() {
   utils.showStatus('loading');
 
   initListeners();
+  positionPlayButton();
 
   await slide.initText();
   await narration.initText();

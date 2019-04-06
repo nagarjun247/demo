@@ -127,14 +127,17 @@ resetApp();
 // WARN: This is also triggered during forward seek!
 aud.onplay = function() {
   runTimer();
+  $('#play-button-overlay').fadeOut();
 };
 
 aud.onpause = function() {
   pauseTimer();
+  $('#play-button-overlay').fadeIn();
 };
 
 aud.onended = function() {
   stopTimer();
+  $('#play-button-overlay').fadeIn();
 };
 
 aud.onloadeddata = function() {
