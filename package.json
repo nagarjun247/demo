@@ -1,6 +1,6 @@
 {
   "name": "chanakya",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Make editable educational videos",
   "main": "index.js",
   "scripts": {
